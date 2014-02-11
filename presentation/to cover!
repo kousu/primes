@@ -1,0 +1,30 @@
+To cover:
+
+
+
+order:
+title
+eros
+sqthm
+pythoncode + square improvement (from the original algorithm)
+eros2 + point out the duplicate work
+multihits booooooo
+fancyfresh + point out that 3s can go by 6s + wtf 5s? wtf 7s? ... point out the cube theorem
+cubetheorem -> doesn't help
+diffs <-- THERE ARE PATTERNS HERE. The primes may seem random but their negative space is not.
+loop graphs
+ ->The circled bits ~= Unit Groups
+U(n): http://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n
+define: lcm(k)
+the recursive structure of these groups
+ -> why there's exactly one to take out for each? I..don't know>
+
+TODO:
+-prime number theorem (n/ln(n))
+-
+
+
+future work:
+-make it work!
+-do p**4s matter?? (i actually did look at this a bit) / iterative method, somehow use newly found primes to find further primes?
+-wtf why this weird pattern

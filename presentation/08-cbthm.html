@@ -1,0 +1,36 @@
+
+<html>
+<head>
+<title>The Cube-Factor Theorem</title>
+<link rel=stylesheet href=style.css />
+</head>
+<body>
+
+<div id=box>
+
+
+<div id=main>
+
+<h3>The Cube-Factor Theorem</h3>
+
+<b><u>Thm</u>: in the prime sieving algorithm, suppose we have sieved out every multiple of 2, 3, 5, ... z and have discovered p as the next prime. Then the only things to newly mark up to p^3 will be p*q for q in the list of primes we already know.</b>
+<p><u>Proof</u>: For any multiple of p &lt; p^3, write it as p*n for some 1 &lt;= n &lt; p^2. We want to prove that n can't be composite if p*n is going to be fancy-fresh.</p>
+<p>So suppose n is composite. Then by the square-factor theorem and n&lt;p^2, n has a factor that is less than p. In other words (you probably need to throw in the fundamental theorem of arithmetic here technically), this says that n has a factor that is one of the primes we've already done, so it will have been *sieved* already.</p>
+<p>So if p*n is fresh, n has to be a prime, call it q, which is in the list we already know.</p>
+<p><u>Further</u>, these are all the fresh ones below p^3, exactly one for every prime we know, because these are all unique ones (since they are a combination of primes that hasn't happened yet, since p is new, and for p*n for n&gt;z, n&gt;=p, ).</p>
+<p style="text-align: right">QED</p>
+
+<p>Isn't this tantalizing? I spent a long time trying to morph this into a stepping algorithm where you use the primes up to p^2 to get the primes up to p^3, constantly moving back and forth like a loom. Improving the old algorithm from stepping by squares to stepping by *cubes* would, on first glance, seem to be really super tubular-awesome!</p>
+<p>Too bad there's some places it breaks down though: it would seem to imply that the *only* composites will be ones made of exactly two primes! This happens once you cross above p^3, and once your are above there all bets seemed to be off again, and I was frustrated for a long time trying to understand the pattern that was going on there.</p>
+
+</div>
+
+<div id=nav>
+<a href=09-diffs.html style="display: block">[next]</a>
+</div>
+
+</div> <!--box-->	
+
+
+</body>
+</html>

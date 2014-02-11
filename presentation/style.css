@@ -1,0 +1,24 @@
+
+@font-face { font-family: dejavubold; src: url('fonts/DejaVuSerifCondensed-Bold.ttf') }
+@font-face { font-family: damase; src: url('fonts/damase.ttf') }
+
+html {
+ height: 100%; /*"the https://developer.mozilla.org/en/CSS/height A percentage height on the root element (e.g. <html>) is relative to the viewport."*/
+}
+
+#box {
+  margin-top:4%;
+  margin-bottom:auto;
+  margin-left:auto; /*should center?*/
+  margin-right:auto;
+  width: 80%;
+  height: 95%;
+  position: relative; /*same as position: static since we don't define positions, except that it makes inner boxes behave differently?*/
+}
+
+h1 { color: darkblue; font-family: dejavubold }
+body { background-color: teal; font-family: damase; font-size: 16pt }
+a { color: darkblue }
+
+#main { height: 95%; /*background-color: blue;*/ margin-bottom: 15px; overflow: auto }
+#nav { text-align: right; margin-right: 10%; margin-bottom: 250px }

@@ -1,0 +1,37 @@
+
+<html>
+<head>
+<title>The Square-Factor Theorem</title>
+<link rel=stylesheet href=style.css />
+</head>
+<body>
+
+<div id=box>
+
+
+<div id=main>
+
+<h3>The Square-Factor Theorem (--> Math 135)</h3>
+
+<!-- I don't know what this is called. Wikipedia proves it on http://en.wikipedia.org/wiki/Trial_division but doesn't name it -->
+
+<b><u>Thm</u>: if a number I is composite, it will have at least one factor < sqrt(I)</b>
+<p><u>Proof</u>: Let I be composite. That means it can be written as I = fq for some factors f and q.</p>
+<p>Suppose both f and q are larger than the square root. Then f > sqrt(I) => f*q > sqrt(I)*sqrt(I) = I. But f*q = I so this is impossible.</p>
+<p style="text-align: right">QED</p>
+
+<p>This is a very key result for prime sieving! Turning it around, it means that we know a number will have been sieved out already if it is less than the *square* of the current prime. We don't have to even look at it again.</p>
+
+<p>e.g. You need not sieve 35=7*5 because 35 < 49. On 29 you need not sieve 754=2*13*29 and 493=17*29 because 29^2 = 841, larger.</p>
+
+</div>
+
+<div id=nav>
+<a href=04-pythoncode.html style="display: block">[next]</a>
+</div>
+
+</div> <!--box-->	
+
+
+</body>
+</html>

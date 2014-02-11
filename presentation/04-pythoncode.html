@@ -1,0 +1,33 @@
+
+<html>
+<head>
+<title>Primes Primes Primes!!1one</title>
+<link rel=stylesheet href=style.css />
+</head>
+<body>
+
+<div id=box>
+
+
+<div id=main>
+
+<span style="font-weight: bold">
+<pre>
+    def sieve(N):
+        prime = [True]*(N+1) #marked True if they known to be composite
+        for s in range(2, N+1):     
+            if prime[s]:
+                for e in range(s**2, N+1, s):
+                    prime[e] = False
+        return [i for i in range(2, N+1) if prime[i]]
+</pre>
+</span>
+
+<div id=nav>
+<a href=05-eros.html style="display: block">[next]</a>
+</div>
+&nbsp;
+</div>
+
+</body>
+</html>

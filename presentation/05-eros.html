@@ -1,0 +1,212 @@
+<html style="height: 100%">
+
+<head>
+<title>Eratosthenes' Sieve</title>
+<link rel=stylesheet href=style.css />
+
+
+<script>
+
+/* todo: USE AT A RAVE */
+
+BOX_WIDTH = 25
+
+function _coords(i)
+{
+canvas = document.getElementById("SIEVE")
+
+per = Math.floor(canvas.width / BOX_WIDTH) //number per row
+
+context = canvas.getContext("2d");
+//context.strokeStyle = '#f00'; // red
+//context.lineWidth   = 4;
+
+coords = {x: Math.floor(i / per), y: Math.floor(i % per)}
+
+coords.x *= BOX_WIDTH
+coords.y *= BOX_WIDTH
+
+return coords;
+}
+
+function fill(i, color)
+{
+canvas = document.getElementById("SIEVE")
+c = _coords(i)
+context = canvas.getContext("2d");
+context.fillStyle   = color;
+context.fillRect(c.y, c.x, BOX_WIDTH, BOX_WIDTH);
+}
+
+function circle(i, color)
+{
+canvas = document.getElementById("SIEVE")
+c = _coords(i)
+context = canvas.getContext("2d");
+context.beginPath();
+context.arc(c.y + BOX_WIDTH/2, c.x + BOX_WIDTH/2, BOX_WIDTH/2/1.5, 0, 2 * Math.PI, false);
+context.fillStyle = sieve_color(i);  //hack: assume i is prime
+context.strokeStyle = 'black'
+context.lineWidth = 2;
+context.fill();
+context.stroke();
+}
+
+
+function rgb(r,g,b)
+{
+return "rgb("+(r)+","+g+","+b+")";
+}
+
+
+function sieve_color(p)
+{
+pres = {2: 'blue', 3: 'green', 5: 'red', 7: 'orange', 11: 'grey', 13: 'teal', 17: 'yellow', 19: '#890', 23: 'ochre', 29: 'purple'}
+if(p in pres) return pres[p]
+
+return ['purple', 'orange'][p % 3]
+
+//alert(p)
+V = Math.floor((1.0*p) / Math.sqrt(LIMIT) * 256)
+//alert(p / LIMIT)
+return rgb(V,0,0)
+}
+
+function limit()
+{
+canvas = document.getElementById("SIEVE");
+return Math.floor((canvas.width * canvas.height) / (BOX_WIDTH*BOX_WIDTH))
+
+}
+
+state = {arr: [], limit: 0, s: 0, j: 0}
+
+function sieve()
+{
+//fill(0, 'white')
+//fill(1, 'white')
+
+
+arr = []
+l = LIMIT //limit()
+//alert(l)
+for(s = 2; s<l; s++)
+{
+ if(!(s in arr))
+  {
+   circle(s, 'pink')
+   for(j = s*s; j<l; j+=s)
+     {
+       fill(j, sieve_color(s))
+       arr[j] = 'no!'
+
+       //pause(1)
+     }
+  }
+}
+}
+
+/*ugh, why you no have threads, javascript?*/
+function start_sieve()
+{
+//body = document.getElementsByTagName('body')[0]
+//body.style.backgroundColor
+
+canvas = document.getElementById('SIEVE')
+context = canvas.getContext("2d");
+context.fillStyle   = 'teal';
+context.fillRect(0, 0, canvas.width, canvas.height);
+
+state.limit = limit()
+state.arr = []
+state.s = 1;
+state.j = state.limit;
+state.dont = false; //"don't" bug me about the demo
+
+setTimeout("step_sieve()", 0);
+}
+
+function step_sieve()
+{
+if(state.s >= state.limit) { /*done*/ }
+else if(state.j >= state.limit)
+   {
+    state.s+=1;
+    //find next prime
+    while(state.s in state.arr) {state.s += 1}
+    //alert("found"+state.s)
+
+    if(!state.dont && (state.s == 3 || state.s == 5)) //demo hack
+      {
+	state.dont = !confirm("Reading to sieve out " + state.s +"s?")
+      }
+    circle(state.s, '')
+    state.j = state.s + state.s; //+ vs *: * is the original optimization, + shows the principle of what's going on better
+   }
+else
+  {
+       fill(state.j, sieve_color(state.s))
+       state.arr[state.j] = 'no!'
+  state.j += state.s;
+ }
+
+//want constant time for the whole run, say 10 seconds for each one
+//there are  of them to do (roughly...)
+a = Math.floor(state.limit / state.s)
+b = (1.7*1000)/a
+//alert(a);
+//alert(b);
+if(state.s <= 5)
+  setTimeout("step_sieve()", state.s < 13 ? b : 327);
+}
+</script>
+
+</head>
+
+<body>
+
+<div id=box>
+<div id=main>
+<center><h3>Click my eye, earthling</h3></center>
+<canvas id=SIEVE  style="margin-left: auto; margin-right: auto; display: block" height=500 onclick="start_sieve()">
+</canvas>
+<script>
+
+
+body = document.getElementsByTagName('body')[0]
+canvas = document.getElementById('SIEVE')
+main = document.getElementById('main')
+
+canvas.width = Math.floor(main.clientWidth*0.99 / BOX_WIDTH)*BOX_WIDTH;
+canvas.height = Math.floor(main.clientHeight*0.75 / BOX_WIDTH)*BOX_WIDTH;
+
+//alert(body.style.backgroundColor)
+
+LIMIT = limit()
+
+  ctx = canvas.getContext('2d');
+  //ctx.clearRect(0, 0, 600, 600);
+  //ctx.save();
+  // Create radial gradient
+  grad = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2,15,canvas.width / 2, canvas.height / 2,600); 
+  grad.addColorStop(0, 'blue');
+  grad.addColorStop(0.075, 'purple');
+  grad.addColorStop(0.3, 'green');
+  grad.addColorStop(0.6, 'orange');
+  grad.addColorStop(0.9, 'red');
+  grad.addColorStop(1, 'teal');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,canvas.width, canvas.height);
+  ctx.save()
+</script>
+
+</div>
+<div id=nav>
+<a href=06-multihits.html />[next]</a>
+</div>
+
+<img src=Sieve_of_Eratosthenes_animation.gif />
+
+</body>
+
+</html>

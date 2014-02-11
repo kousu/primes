@@ -1,0 +1,34 @@
+<html style="height: 100%">
+
+<head>
+<title>Eratosthenes' Sieve</title>
+<link rel=stylesheet href=style.css />
+
+<script>
+
+i = [0];
+ps = ["cyclingnul.png", "cycling2.png", "cycling23.png", "cycling235.png"]
+function cycle()
+{
+i[0] = (i[0] + 1) % ps.length
+c = document.getElementById('c')
+c.src = ps[i[0]]
+}
+</script>
+
+</head>
+
+<body>
+
+<div style="margin-left: auto; margin-right: auto">
+<img id=c src=cyclingnul.png onclick="cycle()" />
+</div>
+
+</div>
+<div id=nav>
+<a href=11-unitgroups.html />[next]</a>
+</div>
+
+</body>
+
+</html>
