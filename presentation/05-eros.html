@@ -138,7 +138,7 @@ else if(state.j >= state.limit)
 
     if(!state.dont && (state.s == 3 || state.s == 5)) //demo hack
       {
-	state.dont = !confirm("Reading to sieve out " + state.s +"s?")
+	state.dont = !confirm("Ready to sieve out " + state.s +"s?")
       }
     circle(state.s, '')
     state.j = state.s + state.s; //+ vs *: * is the original optimization, + shows the principle of what's going on better
